@@ -24,6 +24,7 @@ async function main() {
     fs.writeFileSync(`${dist}_ranks.json`, JSON.stringify(users, null, 2));
 
     for (let i = 1; i <= users.length; i += CONFIG.pressure) {
+        console.log(`${i - 1} / ${users.length}`);
         const data = [],
             names = [],
             ranks = [];
@@ -90,19 +91,19 @@ async function user_data(username) {
     try {
         [_name, _username] = [...user_data_raw.matchAll(/<h5>([^]+?)<\/h5>\s+?<h6>([^]+?)<\/h6>/g)][0].slice(1);
     } catch (e) {
-        console.log("Not Found: Name, Username");
+        console.log(username, "Not Found: Name, Username");
     }
 
     try {
         [_about] = [...user_data_raw.matchAll(/<dfn>([^]+?)<\/dfn>/g)][0].slice(1);
     } catch (e) {
-        console.log("Not Found: About");
+        // console.log(username, "Not Found: About");
     }
 
     try {
         [_avatar] = [...user_data_raw.matchAll(/<img class="img-rounded img-responsive" src="([^]+?)"/g)][0].slice(1);
     } catch (e) {
-        console.log("Not Found: Avatar");
+        console.log(username, "Not Found: Avatar");
     }
 
     let problems = {
