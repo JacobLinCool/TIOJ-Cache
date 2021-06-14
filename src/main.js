@@ -23,8 +23,8 @@ async function main() {
     console.log(`Found ${users.length} Users.`);
     fs.writeFileSync(`${dist}_ranks.json`, JSON.stringify(users, null, 2));
 
-    for (let i = 1; i <= users.length; i += CONFIG.pressure) {
-        console.log(`${i - 1} / ${users.length}`);
+    for (let i = 0; i <= users.length; i += CONFIG.pressure) {
+        console.log(`${i} / ${users.length} Users Cached.`);
         const data = [],
             names = [],
             ranks = [];
